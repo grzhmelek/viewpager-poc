@@ -30,7 +30,10 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
 
         homeViewModel.ads.observe(viewLifecycleOwner, Observer {
-            binding.viewPager.adapter = CustomViewPagerAdapter(it)
+            binding.viewPager.adapter = AdViewPagerAdapter(it, OnAdDeleteClickListener { position ->
+                homeViewModel.onAdDeleteClicked(position)
+                binding.viewPager.adapter?.notifyDataSetChanged()
+            })
         })
 
         return binding.root

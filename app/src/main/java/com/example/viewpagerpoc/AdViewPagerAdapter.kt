@@ -7,7 +7,10 @@ import androidx.viewpager.widget.PagerAdapter
 import com.example.viewpagerpoc.databinding.ViewPagerItemBinding
 
 
-class CustomViewPagerAdapter(private val data: ArrayList<AdModel>) : PagerAdapter() {
+class AdViewPagerAdapter(
+    private val data: ArrayList<AdModel>,
+    private val clickListener: OnAdDeleteClickListener
+) : PagerAdapter() {
 
     override fun getCount(): Int = data.size
 
@@ -20,8 +23,14 @@ class CustomViewPagerAdapter(private val data: ArrayList<AdModel>) : PagerAdapte
         val inflater = LayoutInflater.from(container.context)
         val binding = ViewPagerItemBinding.inflate(inflater, container, false)
         binding.ads = data[position]
+        binding.position =  position
+        binding.clickListener = clickListener
         binding.executePendingBindings()
         container.addView(binding.root)
         return binding.root
+    }
+
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
     }
 }

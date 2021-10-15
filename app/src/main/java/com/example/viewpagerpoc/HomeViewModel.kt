@@ -16,4 +16,8 @@ class HomeViewModel : ViewModel() {
     private fun getData() {
         _ads.value = arrayListOf(AdModel(0, "One"), AdModel(1, "Two"), AdModel(2, "Three"))
     }
+
+    fun onAdDeleteClicked(position: Int) {
+        _ads.value?.removeAt(position)
+    }
 }

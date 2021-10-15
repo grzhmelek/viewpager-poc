@@ -7,6 +7,13 @@
         <variable
             name="ads"
             type="com.example.viewpagerpoc.AdModel" />
+
+        <variable
+            name="clickListener" type="com.example.viewpagerpoc.OnAdDeleteClickListener"/>
+
+        <variable
+            name="position"
+            type="Integer" />
     </data>
 
     <LinearLayout
@@ -19,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?colorAccent"
-            android:padding="3dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp"
             app:cardUseCompatPadding="true">
@@ -30,6 +36,14 @@
                 android:layout_height="wrap_content"
                 android:text="@{ads.name}"
                 tools:text="Hello!" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/delete_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_clear"
+                android:onClick="@{() -> clickListener.onClick(position)}"/>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 </layout>
